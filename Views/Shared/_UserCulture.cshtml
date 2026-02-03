@@ -1,0 +1,17 @@
+﻿@* required Localization.js *@
+@using [Application Name].UserLocalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+<li class="dropdown">
+    <a class="dropdown-toggle btn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="@localizer[Localization.CurrentUICulture]" />
+    </a>
+    <div class="dropdown-menu dropdown-menu-end culture-choice">
+        @foreach (var el in Localization.SupportedCultures)
+        {
+            <a class="dropdown-item btn" data-culture-value="@el.ToString()">
+                <img class="me-3" src="@localizer[el.ToString()]" />@localizer[el.ToString() + "language"].Value
+            </a>
+        }
+    </div>
+</li>
