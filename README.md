@@ -1,8 +1,8 @@
 The simple infrastructure published here addresses the need to simplify the configuration of user interface culture.
-The elements of the solution are represented:
-- from the C# Localization.cs class;
-- from the javascript class Localization.js;
-- from the partial UserCulture.cshtml view.
+The elements of the solution are:
+- C# Localization.cs class;
+- javascript class Localization.js;
+- partial UserCulture.cshtml view.
 
 Localization.cs allows for immediate service configuration within the Program.cs class and exposes a few simple static methods for retrieving and modifying the user's chosen language.
 The Localization.js javascript class and the UserCulture.cshtml partial view allow you to add a menu for the user's language shortcut.
