@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 
-namespace [Appiation Name].UserLocalization
+namespace [Application Name].UserLocalization
 {
     public class Localization
     {
