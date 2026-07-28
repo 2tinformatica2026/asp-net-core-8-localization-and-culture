@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Http.Features;
 using [Application Name].UserLocalization;
 var builder = WebApplication.CreateBuilder(args);
 
-Localization Culture = new Localization();
-Culture.AddLocalization(builder, "Resources", Localization.LocationExpanderFormat.MvcViewSuffix);
+Localization.AddLocalization(builder, "Resources", Localization.LocationExpanderFormat.MvcViewSuffix);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -18,7 +17,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-Culture.UseRequestLocalization(app);
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
