@@ -1,21 +1,21 @@
 class Localization {
     #HiddenCultureFormElement;
     #submitform;
-    constructor(HiddenCultureFormElement = '_HiddenCulture') {
+        constructor(HiddenCultureFormElement = '_HiddenCulture') {
         const div = document.querySelector('div.culture-choice');
         if (div != null) {
-            const This = this;
             this.#HiddenCultureFormElement = HiddenCultureFormElement;
             this.#submitform = document.querySelector('form.localization');
             if (this.#submitform == null) this.#submitform = document.forms[0];
-            var items = div.querySelectorAll("a[data-culture-value]");
-            for (var i = 0; i < items.length; i++) {
-                items[i].addEventListener('click', function () {
-                    This.#SubmitOnCultureClick(this.getAttribute("data-culture-value"))
+            const items = div.querySelectorAll("a[data-culture-value]");
+            items.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    this.#SubmitOnCultureClick(e.target.getAttribute("data-culture-value"));
                 });
-            }
+            });
         }
     }
+
     #SubmitOnCultureClick(culture) {
         const input = document.createElement("input");
         input.setAttribute("type", "hidden");
