@@ -63,8 +63,7 @@ namespace [Application Name].UserLocalization
         {
             if (Context.Request.Method.ToUpper() == "POST")
             {
-                if (Context.Request.Form[HiddenCultureFormElement].ToString() != "")
-                {
+                if (Context.Request.Form.ContainsKey(HiddenCultureFormElement)){
                     SetCultureInfo(Context.Response, Context.Request.Form[HiddenCultureFormElement].ToString());
                 }
             }
