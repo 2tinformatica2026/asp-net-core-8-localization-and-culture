@@ -3,11 +3,11 @@
 @using Microsoft.Extensions.Options
 @inject IOptions<RequestLocalizationOptions> LocalizationOptions
 @inject IViewLocalizer localizer
-<li class="nav-item dropdown">
+<li class="nav-item dropdown" data-component="localization">
     <a class="dropdown-toggle btn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="@localizer[Thread.CurrentThread.CurrentUICulture.ToString()]" />
+        <img src="@localizer[Thread.CurrentThread.CurrentUICulture.ToString()]" data-role="flag" />
     </a>
-    <div class="dropdown-menu dropdown-menu-end" data-component="localization">
+    <div class="dropdown-menu dropdown-menu-end">
         @if (LocalizationOptions.Value.SupportedCultures!= null)
         @foreach (var el in LocalizationOptions.Value.SupportedCultures)
         {
