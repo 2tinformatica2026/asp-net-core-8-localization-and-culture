@@ -1,31 +1,26 @@
 class Localization {
-    #HiddenCultureFormElement;
-    #submitform;
-        constructor(HiddenCultureFormElement = '_HiddenCulture') {
-        const div = document.querySelector('div.culture-choice');
-        if (div != null) {
-            this.#HiddenCultureFormElement = HiddenCultureFormElement;
-            this.#submitform = document.querySelector('form.localization');
-            if (this.#submitform == null) this.#submitform = document.forms[0];
+    constructor(HiddenCultureFormElement = '_HiddenCulture') {
+        const div = document.querySelector('div[data-component="localization"]');
+        if (div != null && document.querySelector('form.localization')!=null) {
             const items = div.querySelectorAll("a[data-culture-value]");
             items.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    this.#SubmitOnCultureClick(e.target.getAttribute("data-culture-value"));
+                item.addEventListener('click', () => {
+                    this.#SubmitOnCultureClick(HiddenCultureFormElement, item.dataset.cultureValue);
                 });
             });
         }
     }
-
-    #SubmitOnCultureClick(culture) {
+    #SubmitOnCultureClick(HiddenCultureFormElement,culture) {
         const input = document.createElement("input");
+        const submitform = document.querySelector('form.localization');
         input.setAttribute("type", "hidden");
-        input.setAttribute("name", this.#HiddenCultureFormElement);
-        input.setAttribute("id", this.#HiddenCultureFormElement);
+        input.setAttribute("name", HiddenCultureFormElement);
+        input.setAttribute("id", HiddenCultureFormElement);
         input.setAttribute("value", culture);
-        this.#submitform.appendChild(input);
-        var ChangeCultureRequest = new Event('ChangeCultureRequest', { submitform: Boolean, bubbles: true, cancelable: true, composed: false })
-        ChangeCultureRequest.submitform = true;
-        document.dispatchEvent(ChangeCultureRequest);
-        if (ChangeCultureRequest.submitform) this.#submitform.submit();
+        submitform.appendChild(input);
+        var submit = new Event('submit.2t.localization', { submitform: Boolean, bubbles: true, cancelable: true, composed: false })
+        submit.submitform = true;
+        document.dispatchEvent(submit);
+        if (submit.submitform) submitform.submit();
     }
 }
