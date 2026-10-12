@@ -16,7 +16,11 @@
     <partial name="~/Views/Shared/_UserCulture.cshtml" />
 } 
 
-@section Scripts { }
+@section Scripts { 
+    <script>
+        const localization = new Localization();
+    </script>
+}
 
 <form method="post" asp-action="Index" asp-controller="Home" class="localization" >
     <div class="text-center">
