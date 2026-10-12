@@ -1,7 +1,7 @@
 class Localization {
     constructor(HiddenCultureFormElement = '_HiddenCulture') {
         const container = document.querySelector('li[data-component="localization"]');
-        if (container != null && document.querySelector('form.localization')!=null) {
+        if (container != null) {
             const items = container.querySelectorAll("a[data-culture-value]");
             items.forEach(item => {
                 item.addEventListener('click', () => {
@@ -17,9 +17,9 @@ class Localization {
         submit.submitform = true;
         submit.culture = culture;
         document.dispatchEvent(submit);
-        if (submit.submitform) {
+        const submitform = document.querySelector('form.localization');
+        if (submit.submitform && submitform!=null) {
             const input = document.createElement("input");
-            const submitform = document.querySelector('form.localization');
             input.setAttribute("type", "hidden");
             input.setAttribute("name", HiddenCultureFormElement);
             input.setAttribute("id", HiddenCultureFormElement);
@@ -29,3 +29,4 @@ class Localization {
         }
     }
 }
+
